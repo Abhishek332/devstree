@@ -1,0 +1,11 @@
+@import "../../index.scss";
+
+.authenticator {
+  height: 500px;
+  width: 800px;
+  background-color: $primary;
+
+  button{
+    @include button($primary);
+  }
+}

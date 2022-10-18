@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
+
+$primary: #04c35c;
+$secondary: #4a5568;
+$border: #e8e8e8;
+$black: #151b28;
+
+@mixin flexCenter($justifyItem, $alignItem, $direction) {
+  display: flex;
+  align-items: $alignItem;
+  justify-content: $justifyItem;
+  flex-direction: $direction;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  color: $black;
+}
+
+.flex-col-center {
+  @include flexCenter(start, center, column);
+}
+
+.loader {
+  height: 100px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+@mixin button($color) {
+  background-color: $color;
+  height: 50px;
+  width: 350px;
+  font-weight: 700;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 19px;
+}

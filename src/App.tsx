@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Authenticator } from './features';
 
 const App = () => {
   return (
-    <div>App</div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Authenticator />} />
+      </Routes>
+    </Router>
   )
 }
 
