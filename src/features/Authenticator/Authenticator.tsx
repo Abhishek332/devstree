@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../redux/customReduxHooks";
+import { auth } from "./authenticatorSlice";
 import { InputBox } from "../../components";
 import "./Authenticator.scss";
 
-interface formState {
-    [key: string]: string;
-}
-
 const Authenticator = () => {
-    const [state, setState] = useState<formState>({
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        mobile: "",
-        dob: "",
-    }),
+    const dispatch = useAppDispatch(),
+        navigate = useNavigate(),
+        user = useAppSelector(state => state.user),
+        [state, setState] = useState<formState>({
+            first_name: "",
+            last_name: "",
+            email: "",
+            password: "",
+            mobile: "",
+            dob: "",
+        }),
         [showSignIn, setShowSignIn] = useState<boolean>(false),
         { first_name, last_name, email, password, mobile, dob } = state;
 
@@ -65,6 +67,10 @@ const Authenticator = () => {
     },
         handleSubmit = (e: any) => {
             e.preventDefault();
+            dispatch(auth({
+                purpose: showSignIn ? 'login' : 'register',
+                obj: state
+            }));
         };
 
 
