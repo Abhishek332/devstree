@@ -4,6 +4,7 @@ $primary: #04c35c;
 $secondary: #4a5568;
 $border: #e8e8e8;
 $black: #151b28;
+$formInput: #2d3748;
 
 @mixin flexCenter($justifyItem, $alignItem, $direction) {
   display: flex;
@@ -46,4 +47,5 @@ $black: #151b28;
   border-radius: 5px;
   font-size: 16px;
   line-height: 19px;
+  margin: 10px;
 }

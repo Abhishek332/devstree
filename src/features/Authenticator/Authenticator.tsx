@@ -14,10 +14,9 @@ const Authenticator = () => {
         password: "",
         mobile: "",
         dob: "",
-        profile_image: ""
     }),
         [showSignIn, setShowSignIn] = useState<boolean>(false),
-        { first_name, last_name, email, password, mobile, dob, profile_image } = state;
+        { first_name, last_name, email, password, mobile, dob } = state;
 
     let formFields = [
         {
@@ -34,6 +33,7 @@ const Authenticator = () => {
             name: 'email',
             value: email,
             label: 'Email',
+            type: 'email'
         },
         {
             name: 'mobile',
@@ -45,16 +45,13 @@ const Authenticator = () => {
             name: 'password',
             value: password,
             label: 'Password',
+            type: 'password'
         },
         {
             name: 'dob',
             value: dob,
-            label: 'Date of Birth'
-        },
-        {
-            name: 'profile_image',
-            value: profile_image,
-            label: 'Profile Image'
+            label: 'Date of Birth',
+            type: 'date'
         }
     ];
 
@@ -73,17 +70,28 @@ const Authenticator = () => {
 
     return (
         <div className="authenticator">
-
-            <form onSubmit={handleSubmit} className="authenticator">
+            <div className="background">
+                <img src="background.png" alt="" />
+            </div>
+            <div className="form-box flex-col-center">
                 {
-                    formFields.map((inputData, i) => <InputBox key={`form-input-${i}`} {...inputData} handleChange={handleChange} required />)
+                    showSignIn ? <div >
+                        <p>Welcome Back</p>
+                        <h1>Login to your Account</h1>
+                    </div>
+                        : <h1>Create New Profile</h1>
                 }
-                <button>Submit</button>
-            </form>
-            {
-                showSignIn ? <p>Don't have a account? <span onClick={() => setShowSignIn(false)}>SignUp</span> here.</p>
-                    : <p>Already have an account? <span onClick={() => setShowSignIn(true)}>SignIn</span> here.</p>
-            }
+                <form onSubmit={handleSubmit} className="flex-col-center">
+                    {
+                        formFields.map((inputData, i) => <InputBox key={`form-input-${i}`} {...inputData} handleChange={handleChange} required />)
+                    }
+                    <button>Submit</button>
+                </form>
+                {
+                    showSignIn ? <p>Don't have a account? <span onClick={() => setShowSignIn(false)}>SignUp</span> here.</p>
+                        : <p>Already have an account? <span onClick={() => setShowSignIn(true)}>SignIn</span> here.</p>
+                }
+            </div>
         </div>
     )
 }
